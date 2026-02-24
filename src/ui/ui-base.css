@@ -1,0 +1,32 @@
+:root {
+  --ui-radius: 14px;
+  --ui-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.ui-page-title {
+  letter-spacing: -0.02em;
+}
+
+.ui-card {
+  border-radius: var(--ui-radius);
+}
+
+.ui-card-hover {
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.ui-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ui-shadow);
+}
+
+.ui-link-muted {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ui-link-muted:hover {
+  text-decoration: underline;
+}

@@ -10,6 +10,8 @@ export class apiError extends Error {
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://v2.api.noroff.dev'
 
+type apiEnvelope<T> = { data: T; meta?: unknown } | T
+
 export async function apiGet<T>(path: string): Promise<T> {
   const url = `${apiBaseUrl}${path}`
 
@@ -24,5 +26,11 @@ export async function apiGet<T>(path: string): Promise<T> {
     throw new apiError(`Request failed (${response.status})`, response.status)
   }
 
-  return (await response.json()) as T
+  const json = (await response.json()) as apiEnvelope<T>
+
+  if (typeof json === 'object' && json !== null && 'data' in json) {
+    return (json as { data: T }).data
+  }
+
+  return json as T
 }

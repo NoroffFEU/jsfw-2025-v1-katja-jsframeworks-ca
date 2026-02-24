@@ -48,12 +48,12 @@ export default function HomePage() {
             return (
               <div className="col-12 col-sm-6 col-lg-4" key={item.id}>
                 <div className="card h-100">
-                <img
-  src={item.image?.url}
-  alt={item.image?.alt || item.title}
-  className="card-img-top ui-product-image"
-  loading="lazy"
-/>
+                  <img
+                    src={item.image?.url}
+                    alt={item.image?.alt || item.title}
+                    className="card-img-top ui-product-image"
+                    loading="lazy"
+                  />
 
                   <div className="card-body d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-start gap-2">

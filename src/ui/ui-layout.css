@@ -5,7 +5,12 @@
 
 /* Header + hero background (light purple wash like your mock) */
 .ui-top-wrap {
-  background: linear-gradient(180deg, rgba(146, 77, 191, 0.22) 0%, rgba(146, 77, 191, 0.06) 55%, rgba(146, 77, 191, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(146, 77, 191, 0.22) 0%,
+    rgba(146, 77, 191, 0.06) 55%,
+    rgba(146, 77, 191, 0) 100%
+  );
 }
 
 /* Navbar spacing */
@@ -36,4 +41,46 @@
 /* Cart button badge positioning tweak (optional) */
 .ui-cart-badge {
   transform: translateY(-1px);
+}
+
+/* Footer area */
+.ui-footer {
+  position: relative;
+  margin-top: 56px;
+  padding-top: 26px;
+  padding-bottom: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 55%, #ffffff 100%);
+  border-top: 1px solid var(--ui-border);
+}
+
+.ui-footer-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 18px;
+}
+
+.ui-footer-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ui-footer-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.ui-footer-links {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.ui-footer-bottom {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ui-border);
+  font-size: 14px;
+  color: var(--ui-muted);
 }

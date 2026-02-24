@@ -1,0 +1,47 @@
+.ui-home-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+@media (min-width: 768px) {
+  .ui-home-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+  }
+}
+
+.ui-home-title-wrap {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .ui-home-title-wrap {
+    text-align: left;
+  }
+}
+
+.ui-home-subtitle {
+  color: var(--ui-muted);
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.ui-home-search-wrap {
+  width: 100%;
+  max-width: 420px;
+}
+
+@media (min-width: 768px) {
+  .ui-home-search-wrap {
+    width: 420px;
+  }
+}
+
+/* Make search dropdown sit above cards */
+.ui-search-dropdown {
+  z-index: 10;
+}

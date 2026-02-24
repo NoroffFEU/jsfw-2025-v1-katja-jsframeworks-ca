@@ -6,6 +6,7 @@ import { getProducts } from '../services/online-shop-api'
 import type { product } from '../types/product'
 import '../ui/ui-product-card.css'
 import '../ui/ui-search.css'
+import '../ui/ui-home.css'
 
 export default function HomePage() {
   const [products, setProducts] = useState<product[]>([])
@@ -41,36 +42,47 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1 className="h3 mb-3">Shop</h1>
+      <div className="ui-home-header">
+        <div className="ui-home-title-wrap">
+          <h1 className="h3 ui-page-title mb-0">Shop</h1>
+          <div className="ui-home-subtitle">Browse gifts</div>
+        </div>
 
-      <div className="mb-3 position-relative">
-        <label className="form-label" htmlFor="search">
-          Search products
-        </label>
-        <input
-          className="form-control"
-          id="search"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          type="search"
-          placeholder="Type a product name..."
-        />
+        <div className="ui-home-search-wrap position-relative">
+          <label className="form-label visually-hidden" htmlFor="search">
+            Search products
+          </label>
 
-        {matches.length ? (
-          <div className="list-group position-absolute w-100 mt-1 ui-search-dropdown">
-            {matches.map((item) => (
-              <Link
-                key={item.id}
-                className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                to={`/product/${item.id}`}
-                onClick={() => setSearchValue('')}
-              >
-                <span>{item.title}</span>
-                <span className="badge bg-dark">{item.rating ?? 0}</span>
-              </Link>
-            ))}
+          <div className="input-group">
+            <input
+              className="form-control"
+              id="search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              type="search"
+              placeholder="Search"
+            />
+            <span className="input-group-text" aria-hidden="true">
+              🔍
+            </span>
           </div>
-        ) : null}
+
+          {matches.length ? (
+            <div className="list-group position-absolute w-100 mt-1 ui-search-dropdown">
+              {matches.map((item) => (
+                <Link
+                  key={item.id}
+                  className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                  to={`/product/${item.id}`}
+                  onClick={() => setSearchValue('')}
+                >
+                  <span>{item.title}</span>
+                  <span className="badge bg-dark">{item.rating ?? 0}</span>
+                </Link>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
 
       {isLoading ? <LoadingState /> : null}
@@ -86,7 +98,7 @@ export default function HomePage() {
 
             return (
               <div className="col-12 col-sm-6 col-lg-4" key={item.id}>
-                <div className="card h-100">
+                <div className="card h-100 ui-card ui-card-hover">
                   <img
                     src={item.image?.url}
                     alt={item.image?.alt || item.title}
@@ -96,25 +108,23 @@ export default function HomePage() {
 
                   <div className="card-body d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-start gap-2">
-                      <h2 className="h6 mb-1">{item.title}</h2>
+                      <h2 className="ui-product-title">{item.title}</h2>
                       {isDiscounted ? (
-                        <span className="badge text-bg-danger">{discountPercent}%</span>
+                        <span className="ui-discount-badge">{discountPercent}%</span>
                       ) : null}
                     </div>
 
                     <div className="small text-muted mb-2">Rating: {item.rating ?? 0}</div>
 
                     <div className="mt-auto d-flex justify-content-between align-items-center">
-                      <div>
+                      <div className="ui-price-row">
                         {isDiscounted ? (
                           <>
-                            <span className="text-muted text-decoration-line-through me-2">
-                              {item.price}
-                            </span>
-                            <span className="fw-semibold">{item.discountedPrice}</span>
+                            <span className="ui-price-old">{item.price}</span>
+                            <span className="ui-price-new">{item.discountedPrice}</span>
                           </>
                         ) : (
-                          <span className="fw-semibold">{item.price}</span>
+                          <span className="ui-price-new">{item.price}</span>
                         )}
                       </div>
 

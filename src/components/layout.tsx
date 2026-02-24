@@ -1,6 +1,9 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { getCartCount } from '../store/cart-store'
 
 export default function Layout() {
+  const cartCount = getCartCount()
+
   return (
     <>
       <header className="border-bottom bg-white">
@@ -15,8 +18,8 @@ export default function Layout() {
                 Contact
               </NavLink>
 
-              <NavLink className="btn btn-outline-dark position-relative" to="/cart">
-                Cart <span className="badge bg-dark ms-2">0</span>
+              <NavLink className="btn btn-outline-dark" to="/cart">
+                Cart <span className="badge bg-dark ms-2">{cartCount}</span>
               </NavLink>
             </div>
           </div>

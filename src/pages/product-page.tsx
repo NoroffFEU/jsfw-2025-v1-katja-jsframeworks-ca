@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import ErrorState from '../components/error-state'
 import LoadingState from '../components/loading-state'
 import { getProductById } from '../services/online-shop-api'
+import { addToCart } from '../store/cart-store'
 import type { product } from '../types/product'
 
 export default function ProductPage() {
@@ -41,6 +42,10 @@ export default function ProductPage() {
 
   const isDiscounted = item.discountedPrice < item.price
 
+  function handleAddToCart() {
+    addToCart(item)
+  }
+
   return (
     <div>
       <Link to="/" className="btn btn-link px-0">
@@ -73,8 +78,8 @@ export default function ProductPage() {
 
           <div className="small text-muted mb-3">Rating: {item.rating ?? 0}</div>
 
-          <button type="button" className="btn btn-dark" disabled>
-            Add to cart (next step)
+          <button type="button" className="btn btn-dark" onClick={handleAddToCart}>
+            Add to cart
           </button>
 
           {item.tags?.length ? (

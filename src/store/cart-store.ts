@@ -11,6 +11,11 @@ export interface cartItem {
 }
 
 const storageKey = 'cart'
+const cartEventName = 'cart:changed'
+
+function notifyCartChanged() {
+  window.dispatchEvent(new Event(cartEventName))
+}
 
 function readCart(): cartItem[] {
   const raw = localStorage.getItem(storageKey)
@@ -27,6 +32,7 @@ function readCart(): cartItem[] {
 
 function writeCart(items: cartItem[]) {
   localStorage.setItem(storageKey, JSON.stringify(items))
+  notifyCartChanged()
 }
 
 export function getCartItems(): cartItem[] {
@@ -35,6 +41,11 @@ export function getCartItems(): cartItem[] {
 
 export function getCartCount(): number {
   return readCart().reduce((sum, item) => sum + item.quantity, 0)
+}
+
+export function onCartChanged(handler: () => void) {
+  window.addEventListener(cartEventName, handler)
+  return () => window.removeEventListener(cartEventName, handler)
 }
 
 export function addToCart(item: product) {

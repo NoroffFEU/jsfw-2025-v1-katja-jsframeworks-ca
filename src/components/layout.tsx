@@ -1,8 +1,15 @@
+import { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { getCartCount } from '../store/cart-store'
+import { getCartCount, onCartChanged } from '../store/cart-store'
 
 export default function Layout() {
-  const cartCount = getCartCount()
+  const [cartCount, setCartCount] = useState(getCartCount())
+
+  useEffect(() => {
+    return onCartChanged(() => {
+      setCartCount(getCartCount())
+    })
+  }, [])
 
   return (
     <>

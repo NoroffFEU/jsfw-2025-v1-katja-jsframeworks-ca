@@ -1,5 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { getCartItems, getCartTotal, removeFromCart, setCartItemQuantity } from '../store/cart-store'
+import {
+  getCartItems,
+  getCartTotal,
+  removeFromCart,
+  setCartItemQuantity,
+} from '../store/cart-store'
 import { showToast } from '../ui/ui-toast/ui-toast-store'
 import '../ui/ui-cart.css'
 

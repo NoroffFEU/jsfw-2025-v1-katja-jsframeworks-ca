@@ -5,6 +5,7 @@ import LoadingState from '../components/loading-state'
 import { getProducts } from '../services/online-shop-api'
 import type { product } from '../types/product'
 import '../ui/ui-product-card.css'
+import '../ui/ui-search.css'
 
 export default function HomePage() {
   const [products, setProducts] = useState<product[]>([])
@@ -35,9 +36,7 @@ export default function HomePage() {
     const q = searchValue.trim().toLowerCase()
     if (!q) return []
 
-    return products
-      .filter((item) => item.title.toLowerCase().includes(q))
-      .slice(0, 8)
+    return products.filter((item) => item.title.toLowerCase().includes(q)).slice(0, 8)
   }, [products, searchValue])
 
   return (
@@ -58,7 +57,7 @@ export default function HomePage() {
         />
 
         {matches.length ? (
-          <div className="list-group position-absolute w-100 mt-1" style={{ zIndex: 10 }}>
+          <div className="list-group position-absolute w-100 mt-1 ui-search-dropdown">
             {matches.map((item) => (
               <Link
                 key={item.id}

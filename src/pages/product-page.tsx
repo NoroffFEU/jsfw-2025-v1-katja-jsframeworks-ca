@@ -41,6 +41,7 @@ export default function ProductPage() {
   const isDiscounted = item.discountedPrice < item.price
 
   function handleAddToCart() {
+    if (!item) return
     addToCart(item)
     showToast('Added to cart', 'success')
   }

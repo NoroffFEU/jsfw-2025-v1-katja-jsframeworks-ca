@@ -1,0 +1,3 @@
+export default function cartPage() {
+  return <h1 className="h3">Cart</h1>
+}

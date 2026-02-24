@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 
-export default function layout() {
+export default function Layout() {
   return (
     <>
       <header className="border-bottom bg-white">

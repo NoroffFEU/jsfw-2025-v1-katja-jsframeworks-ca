@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { getCartItems, getCartTotal, removeFromCart, setCartItemQuantity } from '../store/cart-store'
+import { showToast } from '../ui/ui-toast/ui-toast-store'
+import '../ui/ui-cart.css'
 
 export default function CartPage() {
   const navigate = useNavigate()
@@ -18,6 +20,7 @@ export default function CartPage() {
 
   function handleRemove(id: string) {
     removeFromCart(id)
+    showToast('Removed from cart', 'danger')
     navigate(0)
   }
 
@@ -46,8 +49,7 @@ export default function CartPage() {
                   <img
                     src={item.imageUrl}
                     alt={item.imageAlt}
-                    className="rounded border"
-                    style={{ width: 72, height: 72, objectFit: 'cover' }}
+                    className="rounded border ui-cart-thumb"
                   />
 
                   <div className="flex-grow-1">

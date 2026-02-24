@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { getCartCount, onCartChanged } from '../store/cart-store'
+import UiToast from '../ui/ui-toast/ui-toast'
 
 export default function Layout() {
   const [cartCount, setCartCount] = useState(getCartCount())
@@ -36,6 +37,8 @@ export default function Layout() {
       <main className="container py-4">
         <Outlet />
       </main>
+
+      <UiToast />
     </>
   )
 }

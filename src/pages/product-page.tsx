@@ -4,6 +4,7 @@ import ErrorState from '../components/error-state'
 import LoadingState from '../components/loading-state'
 import { getProductById } from '../services/online-shop-api'
 import { addToCart } from '../store/cart-store'
+import { showToast } from '../ui/ui-toast/ui-toast-store'
 import type { product } from '../types/product'
 
 export default function ProductPage() {
@@ -32,10 +33,7 @@ export default function ProductPage() {
     void loadProduct(id)
   }, [id])
 
-  if (!id) {
-    return <ErrorState message="Missing product id." />
-  }
-
+  if (!id) return <ErrorState message="Missing product id." />
   if (isLoading) return <LoadingState />
   if (errorMessage) return <ErrorState message={errorMessage} onRetry={() => loadProduct(id)} />
   if (!item) return <ErrorState message="Product not found." />
@@ -44,6 +42,7 @@ export default function ProductPage() {
 
   function handleAddToCart() {
     addToCart(item)
+    showToast('Added to cart', 'success')
   }
 
   return (

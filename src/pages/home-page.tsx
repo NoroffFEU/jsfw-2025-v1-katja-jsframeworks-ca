@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import LoadingState from '../components/loading-state'
 import ErrorState from '../components/error-state'
+import LoadingState from '../components/loading-state'
 import { getProducts } from '../services/online-shop-api'
 import type { product } from '../types/product'
 import '../ui/ui-product-card.css'
@@ -10,6 +10,7 @@ export default function HomePage() {
   const [products, setProducts] = useState<product[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [searchValue, setSearchValue] = useState('')
 
   async function loadProducts() {
     setIsLoading(true)
@@ -30,9 +31,48 @@ export default function HomePage() {
     void loadProducts()
   }, [])
 
+  const matches = useMemo(() => {
+    const q = searchValue.trim().toLowerCase()
+    if (!q) return []
+
+    return products
+      .filter((item) => item.title.toLowerCase().includes(q))
+      .slice(0, 8)
+  }, [products, searchValue])
+
   return (
     <div>
       <h1 className="h3 mb-3">Shop</h1>
+
+      <div className="mb-3 position-relative">
+        <label className="form-label" htmlFor="search">
+          Search products
+        </label>
+        <input
+          className="form-control"
+          id="search"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          type="search"
+          placeholder="Type a product name..."
+        />
+
+        {matches.length ? (
+          <div className="list-group position-absolute w-100 mt-1" style={{ zIndex: 10 }}>
+            {matches.map((item) => (
+              <Link
+                key={item.id}
+                className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                to={`/product/${item.id}`}
+                onClick={() => setSearchValue('')}
+              >
+                <span>{item.title}</span>
+                <span className="badge bg-dark">{item.rating ?? 0}</span>
+              </Link>
+            ))}
+          </div>
+        ) : null}
+      </div>
 
       {isLoading ? <LoadingState /> : null}
       {errorMessage ? <ErrorState message={errorMessage} onRetry={loadProducts} /> : null}

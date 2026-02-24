@@ -30,3 +30,41 @@
 .ui-link-muted:hover {
   text-decoration: underline;
 }
+
+:root {
+  --bs-primary: var(--ui-accent);
+  /* Brand colors */
+  --ui-accent: #924dbf;
+  --ui-text: #111827;
+  --ui-muted: #6b7280;
+  --ui-border: #e5e7eb;
+  --ui-bg: #f9fafb;
+  --ui-card: #ffffff;
+
+  /* Shape + shadow */
+  --ui-radius: 14px;
+  --ui-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Global typography + base colors */
+body {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--ui-text);
+  background: var(--ui-bg);
+}
+
+/* Helpful defaults */
+.text-muted {
+  color: var(--ui-muted) !important;
+}
+.border,
+.border-bottom {
+  border-color: var(--ui-border) !important;
+}

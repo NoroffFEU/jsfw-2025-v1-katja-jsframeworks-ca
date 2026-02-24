@@ -1,0 +1,39 @@
+/* Shared page background */
+.ui-page {
+  background: var(--ui-bg);
+}
+
+/* Header + hero background (light purple wash like your mock) */
+.ui-top-wrap {
+  background: linear-gradient(180deg, rgba(146, 77, 191, 0.22) 0%, rgba(146, 77, 191, 0.06) 55%, rgba(146, 77, 191, 0) 100%);
+}
+
+/* Navbar spacing */
+.ui-navbar {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* Hero area (holds the illustration) */
+.ui-hero {
+  padding: 18px 0 22px;
+}
+
+/* Hero illustration (responsive) */
+.ui-hero-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Small helper for brand logo image */
+.ui-brand-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* Cart button badge positioning tweak (optional) */
+.ui-cart-badge {
+  transform: translateY(-1px);
+}

@@ -79,3 +79,16 @@ export function removeFromCart(id: string) {
 export function clearCart() {
   writeCart([])
 }
+
+export function setCartItemQuantity(id: string, quantity: number) {
+  const items = readCart()
+  const next = items
+    .map((x) => (x.id === id ? { ...x, quantity } : x))
+    .filter((x) => x.quantity > 0)
+
+  writeCart(next)
+}
+
+export function getCartTotal(): number {
+  return readCart().reduce((sum, item) => sum + item.discountedPrice * item.quantity, 0)
+}

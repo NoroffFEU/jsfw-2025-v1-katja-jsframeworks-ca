@@ -1,5 +1,5 @@
 :root {
-  --ui-radius: 14px;
+  --ui-radius: 8px;
   --ui-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
@@ -42,7 +42,7 @@
   --ui-card: #ffffff;
 
   /* Shape + shadow */
-  --ui-radius: 14px;
+  --ui-radius: 8px;
   --ui-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
@@ -67,4 +67,15 @@ body {
 .border,
 .border-bottom {
   border-color: var(--ui-border) !important;
+}
+
+/* Global input sizing */
+.form-control,
+textarea.form-control,
+.ui-search-input {
+  min-height: 40px;
+}
+
+.ui-search-btn {
+  height: 40px;
 }

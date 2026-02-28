@@ -14,12 +14,13 @@ export default function Layout() {
   }, [])
 
   return (
-    <div className="ui-page">
+    <div className="ui-site ui-page">
       <div className="ui-top-wrap">
-        <header className="border-bottom bg-transparent">
-          <nav className="navbar navbar-expand ui-navbar">
-            <div className="container">
-              <NavLink className="navbar-brand fw-semibold d-flex align-items-center gap-2" to="/">
+        <header className="ui-header bg-transparent">
+          <nav className="ui-navbar">
+            <div className="container ui-header-grid">
+              {/* Brand */}
+              <NavLink className="ui-brand" to="/" aria-label="Little Joy home">
                 <img
                   className="ui-brand-logo"
                   src="/assets/images/little-joy-logotype.svg"
@@ -27,48 +28,68 @@ export default function Layout() {
                 />
               </NavLink>
 
-              <div className="d-flex gap-3 align-items-center">
-                <NavLink className="nav-link" to="/">
+              {/* Desktop menu (inside header) */}
+              <div className="ui-nav-center ui-nav-desktop" aria-label="Main navigation">
+                <NavLink className="ui-nav-link" to="/">
                   Home
                 </NavLink>
 
-                <NavLink className="nav-link" to="/contact">
+                <span className="ui-nav-divider" aria-hidden="true" />
+
+                <NavLink className="ui-nav-link" to="/contact">
                   Contact
                 </NavLink>
-
-                <NavLink className="btn btn-outline-dark" to="/cart" aria-label="Cart">
-                  <span className="me-2">Cart</span>
-                  <span className="badge bg-dark ui-cart-badge">{cartCount}</span>
-                </NavLink>
               </div>
+
+              {/* Cart */}
+              <NavLink className="ui-cart" to="/cart" aria-label="Cart">
+                <span className="ui-cart-icon" aria-hidden="true">
+                  <img src="/assets/images/cart-icon.svg" alt="" />
+                </span>
+                <span className="ui-cart-count">{cartCount}</span>
+              </NavLink>
             </div>
           </nav>
         </header>
 
-        {/* Hero illustration ONLY here */}
-        <section className="ui-hero">
-          <div className="container">
-            <picture>
-              <source
-                media="(max-width: 767px)"
-                srcSet="/assets/images/mobile-header-illustration.svg"
-              />
-              <img
-                className="ui-hero-illustration"
-                src="/assets/images/desktop-header-illustration.svg"
-                alt=""
-              />
-            </picture>
-          </div>
+        <section className="ui-hero ui-illustration-full" aria-hidden="true">
+          <picture>
+            <source
+              media="(max-width: 767px)"
+              srcSet="/assets/images/mobile-header-illustration.svg"
+            />
+            <img
+              className="ui-hero-illustration"
+              src="/assets/images/desktop-header-illustration.svg"
+              alt=""
+            />
+          </picture>
         </section>
+
+        {/* Mobile menu (below hero) */}
+        <div className="ui-nav-mobile-wrap">
+          <div className="container">
+            <div className="ui-nav-center ui-nav-mobile" aria-label="Main navigation">
+              <NavLink className="ui-nav-link" to="/">
+                Home
+              </NavLink>
+
+              <span className="ui-nav-divider" aria-hidden="true" />
+
+              <NavLink className="ui-nav-link" to="/contact">
+                Contact
+              </NavLink>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <main className="container py-4">
+      <main className="ui-main">
         <Outlet />
       </main>
 
       <footer className="ui-footer">
-        <div className="container">
+        <div className="ui-illustration-full" aria-hidden="true">
           <picture>
             <source
               media="(max-width: 767px)"
@@ -80,48 +101,43 @@ export default function Layout() {
               alt=""
             />
           </picture>
+        </div>
 
-          <div className="row g-4 align-items-start">
-            <div className="col-12 col-md-5">
-              <div className="ui-footer-brand">
-                <img
-                  className="ui-footer-logo"
-                  src="/assets/images/little-joy-logotype.svg"
-                  alt="Little Joy"
-                />
-                <div>
-                  <div className="fw-semibold">Little Joy</div>
-                  <div className="text-muted">Easy gifts, fast choices</div>
-                </div>
-              </div>
-            </div>
+        <div className="container ui-footer-content">
+          <img
+            className="ui-footer-logo"
+            src="/assets/images/little-joy-logotype.svg"
+            alt="Little Joy"
+          />
 
-            <div className="col-12 col-md-3">
-              <ul className="ui-footer-links">
-                <li>
-                  <NavLink className="ui-link-muted" to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="ui-link-muted" to="/contact">
-                    Contact
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="ui-link-muted" to="/cart">
-                    Cart
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <div className="ui-footer-tagline">Easy gifts, fast choices</div>
+
+          <div className="ui-footer-divider" />
+
+          <ul className="ui-footer-links">
+            <li>
+              <NavLink className="ui-link-muted" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="ui-link-muted" to="/contact">
+                Contact
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="ui-link-muted" to="/cart">
+                Cart
+              </NavLink>
+            </li>
+          </ul>
 
           <div className="ui-footer-bottom">
             This is a demo store built with the Noroff Online Shop API – © 2026 Little Joy
           </div>
         </div>
       </footer>
+
       <UiToast />
     </div>
   )

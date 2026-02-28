@@ -32,16 +32,39 @@
 
 .ui-home-search-wrap {
   width: 100%;
-  max-width: 420px;
+  max-width: none;
 }
 
 @media (min-width: 768px) {
   .ui-home-search-wrap {
     width: 420px;
+    max-width: 420px;
   }
 }
 
-/* Make search dropdown sit above cards */
 .ui-search-dropdown {
   z-index: 10;
+}
+
+.ui-home-search-wrap .form-control {
+  border-radius: 8px 0 0 8px;
+  border-color: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.ui-home-search-wrap .form-control::placeholder {
+  color: var(--ui-muted);
+}
+
+.ui-home-search-wrap .input-group-text {
+  border-radius: 0 8px 8px 0;
+  background: var(--ui-text);
+  color: #fff;
+  border: 0;
+  padding: 0 14px;
+}
+
+.ui-home-search-wrap .input-group {
+  overflow: hidden;
+  border-radius: 8px;
 }

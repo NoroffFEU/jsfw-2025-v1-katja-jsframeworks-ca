@@ -53,35 +53,51 @@ export default function HomePage() {
             Search products
           </label>
 
-          <div className="input-group">
+          <div className="ui-search">
             <input
-              className="form-control"
+              className="ui-search-input"
               id="search"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               type="search"
               placeholder="Search"
             />
-            <span className="input-group-text" aria-hidden="true">
-              🔍
-            </span>
-          </div>
 
-          {matches.length ? (
-            <div className="list-group position-absolute w-100 mt-1 ui-search-dropdown">
-              {matches.map((item) => (
-                <Link
-                  key={item.id}
-                  className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                  to={`/product/${item.id}`}
-                  onClick={() => setSearchValue('')}
-                >
-                  <span>{item.title}</span>
-                  <span className="badge bg-dark">{item.rating ?? 0}</span>
-                </Link>
-              ))}
-            </div>
-          ) : null}
+            <button className="ui-search-btn" type="button" aria-label="Search">
+              <img src="/assets/images/search-icon.svg" alt="" />
+            </button>
+
+            {matches.length ? (
+              <div className="ui-search-dropdown">
+                {matches.map((item) => {
+                  const shownPrice =
+                    item.discountedPrice < item.price ? item.discountedPrice : item.price
+
+                  return (
+                    <Link
+                      key={item.id}
+                      className="ui-search-item"
+                      to={`/product/${item.id}`}
+                      onClick={() => setSearchValue('')}
+                    >
+                      <span className="ui-search-thumb" aria-hidden="true">
+                        <img src={item.image?.url} alt="" />
+                      </span>
+
+                      <span className="ui-search-text">
+                        <span className="ui-search-title">{item.title}</span>
+                        <span className="ui-search-price">{shownPrice}</span>
+                      </span>
+
+                      <span className="ui-search-arrow" aria-hidden="true">
+                        →
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
 
@@ -99,39 +115,49 @@ export default function HomePage() {
             return (
               <div className="col-12 col-sm-6 col-lg-4" key={item.id}>
                 <div className="card h-100 ui-card ui-card-hover">
-                  <img
-                    src={item.image?.url}
-                    alt={item.image?.alt || item.title}
-                    className="card-img-top ui-product-image"
-                    loading="lazy"
-                  />
+                  <div className="ui-card-media">
+                    <img
+                      src={item.image?.url}
+                      alt={item.image?.alt || item.title}
+                      className="ui-product-image"
+                      loading="lazy"
+                    />
+                    {isDiscounted ? (
+                      <span className="ui-discount-badge">-{discountPercent}%</span>
+                    ) : null}
+                  </div>
 
                   <div className="card-body d-flex flex-column">
-                    <div className="d-flex justify-content-between align-items-start gap-2">
-                      <h2 className="ui-product-title">{item.title}</h2>
-                      {isDiscounted ? (
-                        <span className="ui-discount-badge">{discountPercent}%</span>
-                      ) : null}
+                    <div className="ui-rating-row">
+                      <span className="ui-stars">
+                        {'★★★★★'.slice(0, Math.round(item.rating ?? 0))}
+                      </span>
+                      <span className="ui-rating-count">
+                        {item.reviews?.length ? `(${item.reviews.length})` : ''}
+                      </span>
                     </div>
 
-                    <div className="small text-muted mb-2">Rating: {item.rating ?? 0}</div>
+                    <div className="ui-card-bottom">
+                      <h2 className="ui-product-title">{item.title}</h2>
 
-                    <div className="mt-auto d-flex justify-content-between align-items-center">
                       <div className="ui-price-row">
                         {isDiscounted ? (
                           <>
-                            <span className="ui-price-old">{item.price}</span>
                             <span className="ui-price-new">{item.discountedPrice}</span>
+                            <span className="ui-price-old">{item.price}</span>
                           </>
                         ) : (
                           <span className="ui-price-new">{item.price}</span>
                         )}
                       </div>
-
-                      <Link className="btn btn-sm btn-dark" to={`/product/${item.id}`}>
-                        View
-                      </Link>
                     </div>
+
+                    <Link
+                      className="btn ui-btn-accent text-white w-100 mt-3 ui-btn-bottom"
+                      to={`/product/${item.id}`}
+                    >
+                      View
+                    </Link>
                   </div>
                 </div>
               </div>

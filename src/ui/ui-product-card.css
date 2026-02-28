@@ -1,6 +1,69 @@
+/* Image */
 .ui-product-image {
   height: 220px;
+  width: 100%;
   object-fit: cover;
+  display: block;
+  border-top-left-radius: var(--ui-radius);
+  border-top-right-radius: var(--ui-radius);
+}
+
+/* Card wrapper (apply to the .card element) */
+.ui-card {
+  border-radius: var(--ui-radius);
+  border: 1px solid var(--ui-border);
+  overflow: hidden; /* ensures image corners clip cleanly */
+  box-shadow: 0 10px 18px rgba(17, 24, 39, 0.08);
+}
+
+/* Image wrapper so the badge can be positioned inside */
+.ui-card-media {
+  position: relative;
+}
+
+/* Discount badge positioned inside image top-right */
+.ui-discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--ui-accent);
+  color: #fff;
+  border-radius: 2px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* Rating row with divider line (like the mock) */
+.ui-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+  margin: 0 0 12px;
+  border-bottom: 1px solid var(--ui-border);
+  font-size: 13px;
+  color: var(--ui-text);
+}
+
+.ui-stars {
+  letter-spacing: 1px;
+  color: var(--ui-accent);
+  font-size: 14px;
+}
+
+.ui-rating-count {
+  color: var(--ui-text);
+}
+
+/* Bottom row: title left, price right */
+.ui-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
 }
 
 /* Card content */
@@ -8,12 +71,14 @@
   font-size: 14px;
   line-height: 1.2;
   margin: 0;
+  font-weight: 700;
+  color: var(--ui-text);
 }
 
 .ui-price-row {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 10px;
 }
 
 .ui-price-old {
@@ -28,12 +93,31 @@
   font-size: 16px;
 }
 
-/* Discount badge (top-right feel) */
-.ui-discount-badge {
+/* Accent button */
+.ui-btn-accent {
   background: var(--ui-accent);
+  border-color: var(--ui-accent);
+}
+
+.ui-btn-accent:hover {
+  filter: brightness(0.95);
+}
+
+.ui-rating-row {
+  min-height: 44px;
+}
+
+.ui-stars--empty {
+  opacity: 0.15;
+}
+
+.ui-btn-bottom {
+  margin-top: auto;
+}
+
+.ui-btn-accent:hover,
+.ui-btn-accent:focus {
+  background: #7f3fb0;
+  border-color: #7f3fb0;
   color: #fff;
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-weight: 700;
-  font-size: 12px;
 }

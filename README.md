@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# JS Frameworks Course Assignment – Online Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Single-page online shop built with **Vite + React + TypeScript** and styled with **Bootstrap (CSS-only)** plus small custom `ui-` classes.
 
-Currently, two official plugins are available:
+## Live demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Add your deployed URL here:
 
-## React Compiler
+- Live site: [Little Joy Shop](https://littlejoy-shop.netlify.app)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Repo
 
-## Expanding the ESLint configuration
+- GitHub repo: https://github.com/NoroffFEU/jsfw-2025-v1-katja-jsframeworks-ca
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Vite + React
+- TypeScript (strict)
+- React Router (SPA routing)
+- Bootstrap 5 (CSS-only)
+- Prettier (formatting)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features (matches the brief)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Home page product grid** (fetches products from API)
+- **Search** with dropdown results that link to product pages
+- **Product details page** (`/product/:id`) with price, discount display, tags and reviews (when available)
+- **Cart**
+  - Add to cart
+  - Cart badge count in header
+  - Update quantity (+ / −)
+  - Remove item
+  - Total cost
+  - **Toast notifications** for “Added to cart” and “Removed from cart”
+- **Checkout success** page clears the cart
+- **Contact form** with validation:
+  - Full name min 3
+  - Subject min 3
+  - Email valid format
+  - Message min 10
+- Loading + error states on API calls
+- Responsive layout (mobile → desktop)
+
+## API
+
+This project uses the Noroff Online Shop API:
+
+- `GET https://v2.api.noroff.dev/online-shop`
+- `GET https://v2.api.noroff.dev/online-shop/:id`
+
+## Getting started (run locally)
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev          # start dev server
+npm run build        # production build
+npm run preview      # preview production build locally
+npm run lint         # run eslint
+npm run format       # format with prettier
+npm run format:check # check formatting
 ```
+
+## Notes
+
+- Custom styling uses `ui-` prefixed classes (small additions on top of Bootstrap).
+- Cart is persisted using `localStorage`.
+
+## Deployment
+
+Deployed with: <Netlify>
